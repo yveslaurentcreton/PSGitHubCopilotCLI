@@ -15,6 +15,18 @@ You can install the PSGitHubCopilotCLI module from the PowerShell Gallery using 
 Install-Module -Name PSGitHubCopilotCLI -AllowPrerelease
 ```
 
+After installing the module, you will need to modify your PowerShell profile script to import the module automatically and make the aliases available in your PowerShell sessions.
+
+To make this easier, we have created a script called `EnablePSGitHubCopilotCLIAliases.ps1` that adds the necessary import statement to your PowerShell profile in an idempotent manner. The script is hosted on the PSGitHubCopilotCLI GitHub repository.
+
+You can run the script directly from the GitHub repository by executing the following command:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/yveslaurentcreton/PSGitHubCopilotCLI/develop/scripts/EnablePSGitHubCopilotCLIAliases.ps1'))
+```
+
+This command will download and execute the `EnablePSGitHubCopilotCLIAliases.ps1` script from the GitHub repository. After running this command, you can open a new PowerShell session, and the PSGitHubCopilotCLI module will be imported, making the aliases available for use.
+
 ## Usage
 
 Once installed, you can use the functions provided by the PSGitHubCopilotCLI module in your PowerShell session. The module includes the following functions:
