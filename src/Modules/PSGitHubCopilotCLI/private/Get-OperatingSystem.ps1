@@ -10,7 +10,6 @@
     Get-OperatingSystem
     This example shows how to call the function to determine the current operating system.
 #>
-
 function Get-OperatingSystem {
     [CmdletBinding()]
     [OutputType([string])]

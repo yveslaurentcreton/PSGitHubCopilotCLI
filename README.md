@@ -50,4 +50,4 @@ We're always open to new ideas! If you have a feature request, please [open an i
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/yveslaurentcreton/PSGitHubCopilotCLI/blob/main/LICENSE).
