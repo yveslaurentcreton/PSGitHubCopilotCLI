@@ -1,0 +1,42 @@
+name: CD PowerShell Gallery
+
+on:
+  push:
+    branches: ["main", "develop"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch unshallow
+        run: git fetch --unshallow
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: "5.x"
+
+      - name: Run GitVersion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+        with:
+          versionSpec: "5.x"
+
+      - name: Apply version to PSGitHubCopilotCLI manifest
+        shell: pwsh
+        run: |
+          $version = "${{ env.GitVersion_MajorMinorPatch }}"
+          $prerelease = "${{ env.GitVersion_NuGetPreReleaseTagV2 }}"
+          $manifestFile = Get-ChildItem ".\src\Modules\PSGitHubCopilotCLI\PSGitHubCopilotCLI.psd1"
+          $content = Get-Content $manifestFile -Raw
+          $content = $content.Replace("[[version]]", $version);
+          $content = $content.Replace("[[prerelease]]", $prerelease);
+          Set-Content -Value $content -Path $manifestFile
+
+      - name: Publish PSGitHubCopilotCLI to PowerShell Gallery
+        shell: pwsh
+        run: Publish-Module -Path .\src\Modules\PSGitHubCopilotCLI\ -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_NUGET_APIKEY }}
