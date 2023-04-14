@@ -35,7 +35,7 @@ function Invoke-GitHubCopilotWhatTheShell {
     if ($?) {
         # Read the contents of the temporary file and execute the command
         $fixedCmd = Get-Content -Path $tmpFile
-        Invoke-Expression -Command $fixedCmd
+        & $fixedCmd
     } else {
         Write-Host "Apologies! Extracting command failed"
     }
