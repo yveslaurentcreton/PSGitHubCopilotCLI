@@ -27,6 +27,3 @@ function Get-OperatingSystem {
         throw "Unsupported operating system detected."
     }
 }
-
-# Export the function and its aliases
-Export-ModuleMember -Function "Get-OperatingSystem"

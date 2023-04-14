@@ -23,7 +23,7 @@ function Invoke-GitHubCopilotWhatTheShell {
 
     # Join the args to form a single input string
     $inputString = [string]::Join(" ", $Query)
-    $inputString += ". The command should be executable in PowerShell on $operatingSystem."
+    $inputString += " in PowerShell on $operatingSystem."
 
     # Create a temporary file to store the output
     $tmpFile = New-TemporaryFile
