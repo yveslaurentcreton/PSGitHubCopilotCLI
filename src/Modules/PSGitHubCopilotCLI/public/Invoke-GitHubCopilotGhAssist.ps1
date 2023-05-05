@@ -24,8 +24,12 @@ function Invoke-GitHubCopilotGhAssist {
     # Create a temporary file to store the output
     $tmpFile = New-TemporaryFile
 
+    # Get the path to the node executable
+    $nodeFolder = (Split-Path -Parent (Get-Command -Name "node").Path)
+    $copilotCliPath = Join-Path -Path $nodeFolder -ChildPath "node_modules\@githubnext\github-copilot-cli\cli.js"
+
     # Call the Copilot CLI using node and store the output in the temporary file
-    & "node" "C:\Program Files\nodejs\node_modules\@githubnext\github-copilot-cli\cli.js" gh-assist $inputString --shellout $tmpFile
+    & "node" $copilotCliPath gh-assist $inputString --shellout $tmpFile
 
     # Check if the command was successful
     if ($?) {
