@@ -13,17 +13,15 @@
 .EXAMPLE
     Invoke-GitHubCopilotWhatTheShell create a new folder called "my-folder"
 #>
-function Invoke-GitHubCopilotWhatTheShell {
+function Invoke-GitHubCopilotWhatTheWsl {
     param(
         [Parameter(Mandatory=$true, ValueFromRemainingArguments=$true)]
         [string[]]$Query
     )
 
-    $operatingSystem = Get-OperatingSystem
-
     # Join the args to form a single input string
-    $inputString = [string]::Join(" ", $Query)
-    $inputString += " in PowerShell on $operatingSystem."
+    $inputString = [string]::Join(" use wsl to ", $Query)
+    $inputString += " "
 
     # Create a temporary file to store the output
     $tmpFile = New-TemporaryFile
@@ -57,10 +55,8 @@ function Invoke-GitHubCopilotWhatTheShell {
 }
 
 # Set the alias for the function
-Set-Alias -Name "??" -Value "Invoke-GitHubCopilotWhatTheShell"
-Set-Alias -Name "wts" -Value "Invoke-GitHubCopilotWhatTheShell"
+Set-Alias -Name "wsl?" -Value "Invoke-GitHubCopilotWhatTheWsl"
 
 # Export the function and its aliases
-Export-ModuleMember -Function "Invoke-GitHubCopilotWhatTheShell"
-Export-ModuleMember -Alias "??"
-Export-ModuleMember -Alias "wts"
+Export-ModuleMember -Function "Invoke-GitHubCopilotWhatTheWsl"
+Export-ModuleMember -Alias "wsl?"

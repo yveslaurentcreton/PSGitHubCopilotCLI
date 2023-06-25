@@ -12,7 +12,7 @@
 RootModule = '.\PSGitHubCopilotCLI.psm1'
 
 # Version number of this module.
-ModuleVersion = '[[version]]'
+ModuleVersion = '99.99.99'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -72,7 +72,8 @@ ScriptsToProcess = @()
 FunctionsToExport = @(
     'Invoke-GitHubCopilotWhatTheShell',
     'Invoke-GitHubCopilotGitAssist',
-    'Invoke-GitHubCopilotGhAssist'
+    'Invoke-GitHubCopilotGhAssist',
+    'Invoke-GitHubCopilotWhatTheWsl'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -86,7 +87,8 @@ AliasesToExport = @(
     '??',
     'wts',
     'git?',
-    'gh?'
+    'gh?',
+    'wsl?'
 )
 
 # DSC resources to export from this module
