@@ -27,9 +27,17 @@ function Invoke-GitHubCopilotGitAssist {
     # Get the path to the node executable
     $nodeFolder = (Split-Path -Parent (Get-Command -Name "node").Path)
     $copilotCliPath = Join-Path -Path $nodeFolder -ChildPath "node_modules\@githubnext\github-copilot-cli\cli.js"
+    
+    # Generate command to call the Copilot CLI based on node vs npm
+    if (Test-Path -Path $copilotCliPath) {
+        $copilotCommand = "node $copilotCliPath"
+    }
+    else {
+        $copilotCommand = 'github-copilot-cli'
+    }
 
-    # Call the Copilot CLI using node and store the output in the temporary file
-    & "node" $copilotCliPath git-assist $inputString --shellout $tmpFile
+    # Call the Copilot CLI directly or using node and store the output in the temporary file
+    & $copilotCommand git-assist $inputString --shellout $tmpFile
 
     # Check if the command was successful
     if ($?) {

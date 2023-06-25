@@ -34,6 +34,7 @@ Once installed, you can use the functions provided by the PSGitHubCopilotCLI mod
 - `Invoke-GitHubCopilotWhatTheShell` (aliases: `??`, `wts`)
 - `Invoke-GitHubCopilotGitAssist` (alias: `git?`)
 - `Invoke-GitHubCopilotGhAssist` (alias: `gh?`)
+- `Invoke-GitHubCopilotWhatTheWsl` (alias: `wsl?`)
 To use a function, simply call it with the required arguments. For example:
 
 ```powershell

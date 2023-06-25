@@ -12,7 +12,7 @@ if (-not (Test-Path -Path $profilePath)) {
 
 $existingProfileContent = Get-Content -Path $profilePath -Raw
 
-if (-not $existingProfileContent.Contains("Import-Module -Name PSGitHubCopilotCLI")) {
+if (-not $existingProfileContent.Contains($profileContent)) {
     Add-Content -Path $profilePath -Value $profileContent
 }
  
